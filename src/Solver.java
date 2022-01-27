@@ -13,7 +13,12 @@ public class Solver {
 
     public static void main(String[] args) {
         printSudoku();
+    }
 
+    private static boolean isValidLocation(int number, int row, int col) {
+        return isAvailableInColumn(number, col)
+                && isAvailableInRow(number, row)
+                && isAvailableInSquare(number, row, col);
     }
 
     private static boolean isAvailableInRow(int number, int row) {
@@ -57,7 +62,11 @@ public class Solver {
                 if (j % 3 == 0 && j != 0) {
                     System.out.print("| ");
                 }
-                System.out.print(grid[i][j] + " ");
+                if (grid[i][j] == 0) {
+                    System.out.print(". ");
+                } else {
+                    System.out.print(grid[i][j] + " ");
+                }
             }
             System.out.println();
         }
