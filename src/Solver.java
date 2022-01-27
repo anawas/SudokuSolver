@@ -12,7 +12,7 @@ public class Solver {
             {0, 0, 0, 6, 0, 0, 7, 0, 5}};
 
     public static void main(String[] args) {
-
+        printSudoku();
 
     }
 
@@ -46,5 +46,20 @@ public class Solver {
             }
         }
         return true;
+    }
+
+    private static void printSudoku() {
+        for (int i = 0; i < SUDOKU_SIZE; i++) {
+            if (i % 3 == 0 && i != 0) {
+                System.out.println("-".repeat(21));
+            }
+            for (int j = 0; j < SUDOKU_SIZE; j ++) {
+                if (j % 3 == 0 && j != 0) {
+                    System.out.print("| ");
+                }
+                System.out.print(grid[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
