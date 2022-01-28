@@ -13,6 +13,34 @@ public class Solver {
 
     public static void main(String[] args) {
         printSudoku();
+        if (solve()) {
+            System.out.println("Solved successfully");
+            System.out.println();
+            printSudoku();
+        } else {
+            System.out.println("No solution found");
+        }
+    }
+
+    private static boolean solve() {
+        for (int row = 0; row < SUDOKU_SIZE; row++) {
+            for (int col = 0; col < SUDOKU_SIZE; col++) {
+                if (grid[row][col] == 0) {
+                    for (int num = 1; num <= 9; num++) {
+                        if (isValidLocation(num, row, col)) {
+                            grid[row][col] = num;
+                            if (solve()) {
+                                return true;
+                            } else {
+                                grid[row][col] = 0;
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private static boolean isValidLocation(int number, int row, int col) {
@@ -58,7 +86,7 @@ public class Solver {
             if (i % 3 == 0 && i != 0) {
                 System.out.println("-".repeat(21));
             }
-            for (int j = 0; j < SUDOKU_SIZE; j ++) {
+            for (int j = 0; j < SUDOKU_SIZE; j++) {
                 if (j % 3 == 0 && j != 0) {
                     System.out.print("| ");
                 }
